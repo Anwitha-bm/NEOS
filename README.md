@@ -16,7 +16,9 @@ You test it by typing “I am human.” The engine is set to Granite (Offline) w
 <img width="1920" height="932" alt="Screenshot 2025-09-04 100646" src="https://github.com/user-attachments/assets/f7690f6c-1a9f-4a32-9562-75f520a04b5a" />
 
 Next, you try uploading a file from your computer. The file explorer opens, showing your Downloads folder where you can pick a text file or background image.
+
 <h1>5️⃣ Custom Background</h1>
+
 <img width="1920" height="932" alt="Screenshot 2025-09-04 101625" src="https://github.com/user-attachments/assets/1a20148c-1bda-46e1-9488-b5f377d800f4" />
 
 You upload a custom background — a pastel beach scene. The app background changes to this image, giving it a personalized look.
@@ -24,8 +26,16 @@ You upload a custom background — a pastel beach scene. The app background chan
 <img width="1920" height="930" alt="Screenshot 2025-09-04 101732" src="https://github.com/user-attachments/assets/09471b84-21ea-486d-bb13-a435c3b2dbb3" />
 
 The app also highlights the Browse files button, showing how users can replace the background or upload text files easily.
+
 <h1>6️⃣ Collapsed Panel View</h1>
+
 <img width="1920" height="926" alt="Screenshot 2025-09-04 101829" src="https://github.com/user-attachments/assets/646eecdb-0153-4c01-aecb-90be822391a6" />
 
 Finally, you collapse the side panel for a clean view. The beach wallpaper stays in the background, and the main controls for TTS and playback remain in the center.
+
+<h1>7️⃣ Attachment </h1>
+<img width="1920" height="939" alt="Screenshot 2025-09-04 105419" src="https://github.com/user-attachments/assets/57b58319-8907-4366-afcb-5521054b1435" />
+
+An attachment can be uploaded to generate the voice instead of typing the text, and the output can be saved in MP3 format.
+
 
