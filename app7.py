@@ -4,7 +4,7 @@ import requests
 import os
 import base64
 
-# --- CONFIGURATION ---
+#CONFIGURATION
 HF_API_TOKEN = "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"  # <-- Replace with your token
 TTS_MODEL_ID = "ibm/tts_granite_large"
 PARAPHRASE_MODEL_ID = "tuner007/pegasus_paraphrase"
@@ -12,12 +12,12 @@ GRANITE_TTS_API_URL = f"https://api-inference.huggingface.co/models/{TTS_MODEL_I
 PARAPHRASE_API_URL = f"https://api-inference.huggingface.co/models/{PARAPHRASE_MODEL_ID}"
 HEADERS = {"Authorization": f"Bearer {HF_API_TOKEN}"}
 
-# --- PAGE SETUP ---
+#PAGE SETUP
 st.set_page_config(page_title="NeoSonic - AI Audiobook Creator", layout="wide")
 st.title("NeoSonic - AI Audiobook Creator")
 st.write("🎧 Convert text into expressive audiobooks using IBM Granite (Online) or Granite (Offline) with optional paraphrasing.")
 
-# --- BACKGROUND CUSTOMIZATION ---
+#BACKGROUND CUSTOMIZATION
 with st.sidebar:
     st.header("🎨 Background Settings")
 
@@ -50,7 +50,7 @@ with st.sidebar:
         """
     st.markdown(css, unsafe_allow_html=True)
 
-# --- SESSION STATE FOR HISTORY ---
+#SESSION STATE FOR HISTORY
 if "history" not in st.session_state:
     st.session_state.history = []
 
@@ -79,7 +79,7 @@ with st.sidebar:
     else:
         st.write("No history yet.")
 
-# --- TEXT INPUT ---
+#TEXT INPUT
 uploaded_file = st.file_uploader("📂 Upload a text file", type=["txt"])
 text_input = st.text_area("✍️ Or paste your text here", height=200)
 
@@ -89,12 +89,12 @@ if uploaded_file:
 elif text_input:
     text_data = text_input
 
-# --- SETTINGS ---
+#SETTINGS
 engine_choice = st.selectbox("🧠 Select TTS Engine", ["IBM Granite (Online)", "Granite (Offline)"])
 tone = st.selectbox("🎭 Select Tone", ["Neutral", "Inspiring", "Suspenseful"])
 voice = st.selectbox("🎤 Select Voice (Offline only)", ["Default", "Male", "Female"])
 
-# --- PARAPHRASE FUNCTION ---
+#PARAPHRASE FUNCTION
 def rewrite_text(text, tone="Neutral"):
     prompt = f"Rewrite this in a {tone.lower()} tone: {text}"
     payload = {"inputs": prompt,"parameters":{"do_sample": True,"top_k": 50,"top_p": 0.95,"num_return_sequences": 1}}
@@ -110,7 +110,7 @@ def rewrite_text(text, tone="Neutral"):
         st.text(response.text)
         return text
 
-# --- IBM GRANITE AUDIO FUNCTION ---
+#IBM GRANITE AUDIO FUNCTION
 def generate_granite_audio(text):
     payload = {"inputs": text}
     response = requests.post(GRANITE_TTS_API_URL, headers=HEADERS, json=payload)
@@ -127,7 +127,7 @@ def generate_granite_audio(text):
         st.text(response.text)
         return None
 
-# --- PYTTSX3 HELPERS ---
+# PYTTSX3 HELPERS
 def get_voice_id(engine, voice_name):
     voices = engine.getProperty('voices')
     if voice_name == "Male":
@@ -152,7 +152,7 @@ def apply_tone(engine, tone_choice):
     elif tone_choice == "Suspenseful":
         engine.setProperty('rate', 120)
 
-# --- REWRITE BUTTON ---
+#REWRITE BUTTON
 if st.button("🔁 Rewrite Text"):
     if not text_data.strip():
         st.warning("Please provide text first.")
@@ -169,7 +169,7 @@ if st.button("🔁 Rewrite Text"):
         st.session_state.history.append({"original_text": text_data,"rewritten_text": rewritten,"tone": tone,"engine": engine_choice})
         text_data = rewritten
 
-# --- AUDIO GENERATION ---
+#AUDIO GENERATION
 if st.button("🎙️ Generate Audio"):
     if not text_data.strip():
         st.warning("Please provide some text first.")
@@ -196,3 +196,4 @@ if st.button("🎙️ Generate Audio"):
             st.download_button("⬇️ Download Audio", data=audio_bytes, file_name="neosonic_output.wav", mime="audio/wav")
         else:
             st.error("Audio generation failed.")
+
